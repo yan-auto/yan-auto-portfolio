@@ -35,3 +35,27 @@ Key files:
 - TLS certificates are handled automatically by Caddy.
 - Current DB is SQLite (sufficient for small scale; backup must include sqlite + wal/shm).
 - Next milestone: run a full backup + restore drill (Day 2).
+
+## 5) Backup & Restore Drill (Day 2)
+### Backup (VPS)
+- Backup target: Docker volume `n8n-docker_n8n_data`
+- Backup command (tar):
+  - Archive includes: `config`, `database.sqlite`, `database.sqlite-wal`, `database.sqlite-shm`
+- Example backup file:
+  - `n8n_data_2026-03-03_130846.tar.gz`
+  - SHA256: `c4a54d24a571f10e1ad225dec81f23c00ee22acf253039cd491cb26fc7336eb3`
+
+### Restore (Local shadow environment)
+Goal: restore into a NEW docker volume and run n8n on `localhost:5679` (no impact to production).
+
+- Create restore volume:
+  - `docker volume create n8n_restore_data`
+- Extract archive into volume (alpine):
+  - mount volume at `/data`
+  - mount backup folder at `/backup`
+  - `tar -xzf ...` into `/data`
+- Start local n8n (same version as production):
+  - Image: `docker.n8n.io/n8nio/n8n:2.8.3`
+  - Port mapping: `5679:5678`
+- Verification:
+  - `http://localhost:5679` returns 200 and editor is accessible
