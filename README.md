@@ -6,7 +6,7 @@ My focus is on turning AI ideas into working systems: prompt design, multi-model
 
 ## Featured Projects
 
-### 1) OpenClaw — Personal AI Agent System
+### 1) [OpenClaw — Personal AI Agent System](projects/openclaw-agent-system/README.md)
 A self-hosted AI agent system running on my own server, built for daily automation and long-term use.
 
 Highlights:
@@ -19,7 +19,7 @@ Highlights:
 Core value:
 This project shows that I can design, deploy, operate, and fix a real AI system instead of only using chat interfaces.
 
-### 2) n8n — AI Brief Automation System
+### 2) [n8n — AI Brief Automation System](projects/n8n-ai-brief-automation/README.md)
 A self-hosted n8n workflow that turns AI industry news into structured email briefs.
 
 Highlights:
